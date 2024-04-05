@@ -1,0 +1,83 @@
+version: '3.1'
+
+networks:
+  todo_network:
+    external: false
+
+services:
+  mongo-userdb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: userDB
+    networks:
+      - todo_network
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/volumes/todo/mongo-userdb:/data/db
+
+  mongo-taskdb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: taskDB
+    networks:
+      - todo_network
+    volumes:
+      - ~/volumes/todo/mongo-projectdb:/data/db
+
+  mongo-express-userdb:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8083:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-userdb:27017/
+    networks:
+      - todo_network
+
+  mongo-express-taskdb:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8084:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo-taskdb:27017/
+    networks:
+      - todo_network
+
+  user-microservice:
+    image: metalstiv/todo_user_microservice:1.0
+    restart: always
+    ports:
+      - 3001:3001
+    volumes:
+      - ./rsaKeys/public.pem:/app/rsaKeys/public.pem:ro
+      - ./rsaKeys/private.pem:/app/rsaKeys/private.pem:ro
+    environment:
+      PORT: 3001
+      DB_HOST: 'mongo-userdb'
+      DB_PORT: '27017'
+      DB_AUTH_SOURCE: 'admin'
+      DB_NAME: 'userDB'
+      DB_USER: 'root'
+      DB_PASSWORD: 'example'
+      MAIL_SERVICE: 'Yandex'
+      MAIL_USER: 'netplaner@yandex.com'
+      MAIL_PASSWORD: 'appmecniptnrogny'
+      DOMAIN_USER_MS: 'http://localhost:3001'
+      DOMAIN_FRONT: 'http://localhost:3000'
+      JWT_EXPIRATION: 120
+      RSA_PUBLIC_FILE: './rsaKeys/public.pem'
+      RSA_PRIVATE_FILE: './rsaKeys/private.pem'
+    networks:
+      - todo_network
