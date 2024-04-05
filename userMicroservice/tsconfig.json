@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "module": "commonJS",
+      "esModuleInterop": true,
+      "target": "es6",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "build",
+      "downlevelIteration": true,
+      "types": [
+        "node"
+      ]
+    },
+    "lib": ["es2015"]
+}  
