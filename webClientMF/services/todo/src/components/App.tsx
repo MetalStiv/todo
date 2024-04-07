@@ -1,16 +1,22 @@
 import React from 'react';
 import * as styles from './App.module.scss';
-import { Outlet } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TODO } from '../reducers/reposReducer';
+import { TodoState } from 'src/router';
 
 const App = () => {
-    return (
-        <React.Fragment>
-            <div className={styles.example}>
-                Todo App
-            </div>
-            {/* <Outlet /> */}
-        </React.Fragment>
+    const dispatch = useDispatch();
+    const todos: string[] = useSelector((state: TodoState) => state.repos.todos);
+
+    return (        
+        <div className={styles.example}>
+            <ul>
+            {
+                todos.map(todo => <li>{todo}</li>)
+            }
+            </ul>
+            <button onClick={() => dispatch({type: ADD_TODO, payload: 'new Todo'})}>Add</button>
+        </div>
     )
 }
 

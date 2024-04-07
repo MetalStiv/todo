@@ -14,7 +14,9 @@
 			{
 				"allowSingleExtends": true
 			}
-		]
+		],
+		"Ident": ["error", 4],
+		"space-in-brackets": ["error", "never"]
 	},
 	"extends": [
 		"next",

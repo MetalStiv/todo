@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^1.6.8",
     "formik": "^2.4.5",
-    "next": "^14.1.0",
+    "next": "^14.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -26,6 +26,8 @@
     "@types/node": "20.11.19",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint-loader": "^3.0.2",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "sass": "^1.71.0",
