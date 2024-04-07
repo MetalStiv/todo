@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+
+.formInput{
+    input {
+        width: calc(30vw - 32px);
+        height: 3vh;
+        background-color: $backgroundColor;
+        border-color: $buttonOneColor;
+        border-radius: 40px;
+        color: $white;
+        padding: 10px;
+        margin-bottom: 18px;;
+        padding-left: 18px;
+        font-size: 16px;
+    }
+}
+
+.btnSubmit{
+    width: 30vw;
+    height: 5vh;
+    background-color: $buttonOneColor;
+    border: none;
+    border-radius: 40px;
+    color: $white;
+    padding: 0;
+    font-size: 16px;
+}

@@ -1,0 +1,107 @@
+@import "./variables.scss";
+
+#rootContainer {
+    display: flex;
+    margin: -8px;
+    color: $white;
+    
+    #formContainer{
+        flex-grow: 1;
+        height: 100vh;
+        background-color: $backgroundColor;
+
+        #userForm{
+            margin: 8vw;
+            margin-top: 20vh;
+            height: 50vh;
+            text-align: center;
+
+            #caption{
+                text-align: center;
+                font-size: 48pt;
+                width: 30vw;
+            }
+
+            .reactTabs{
+                -webkit-tap-highlight-color: transparent;
+                height: 300px;
+                width: 30vw;
+            }
+
+            .reactTabsTabList{
+                margin-bottom: 32px;
+                padding: 0;
+                background-color: $buttonOneColor;
+                border-radius: 40px;
+                padding-bottom: 12px;
+            }
+
+            .reactTabsTab {
+                display: inline-block;
+                bottom: -1px;
+                position: relative;
+                list-style: none;
+                height: 3vh;
+                padding-top: 10px;
+                width: 48%;
+                text-align: center;
+                margin-top: 10px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .reactTabsTabSelected {
+                border-color: $buttonTwoColor;
+                background-color: $buttonTwoColor;
+                border-radius: 40px;
+            }
+
+            .reactTabsTab:focus {
+                outline: none;
+            }
+
+            .reactTabsTabPanel {
+                animation: fadeOut .3s linear 1 normal running 0s both;
+                display: none;
+
+                @keyframes fadeOut {
+                    0% {
+                        opacity: 1;
+                    }
+
+                    50% {
+                        opacity: 0.5;
+                    }
+
+                    100% {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            .reactTabsTabPanelSelected {
+                animation: fadeIn .3s linear 1 normal running 0s both;
+                display: block;
+
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+
+                    50% {
+                        opacity: 0.5;
+                    }
+
+                    100% {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    #backgroundPicture{
+        width: calc(100vh*948/1085);
+        height: 100vh;
+    }
+}
