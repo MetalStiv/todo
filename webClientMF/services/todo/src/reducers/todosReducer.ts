@@ -8,19 +8,19 @@ const defaultState: ITodoState = {
     isFetching: false
 }
 
-export const ADD_TODO: string = 'ADD_TODO';
-export const DELETE_TODO: string = 'DELETE_TODO';
-
-export type ActionType = typeof ADD_TODO | typeof DELETE_TODO;
+export enum ActionTypeEnum {
+    ADD_TODO = 'ADD_TODO',
+    DELETE_TODO = 'DELETE_TODO'
+};
 
 export interface IAction {
-    type: ActionType,
+    type: ActionTypeEnum,
     payload: string,
 }
 
-export default function reposReducer(state = defaultState, action: IAction): ITodoState{
+export default function todosReducer(state = defaultState, action: IAction): ITodoState{
     switch(action.type){
-        case ADD_TODO:
+        case ActionTypeEnum.ADD_TODO:
             return {
                 ...state,
                 todos: [...state.todos, action.payload]

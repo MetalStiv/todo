@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
 import { configureStore } from '@reduxjs/toolkit'
-import reposReducer from "./reposReducer";
-import thunk from 'redux-thunk';
+import todosReducer from "./todosReducer";
 
 const rootReducer = combineReducers({
-    repos: reposReducer
+    todos: todosReducer
 })
 
 const store = configureStore({

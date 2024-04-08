@@ -33,6 +33,7 @@ export default (env: EnvVariables) => {
         filename: 'remoteEntry.js',
         exposes: {
             './Router': './src/router.tsx',
+            './todoStore': './src/reducers/index.ts',
         },
         shared: {
             ...packageJson.dependencies,
